@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>PDF to Text Converter</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+</head>
+<body>
+    <div class="main">
+        <div class="navbar">
+            <div class="icon">
+                <h2 class="logo">FileConvertify</h2>
+            </div>
+            <div class="logo-image">
+                <img src="png1-transformed.png" alt="Your Logo">
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="#">HOME</a></li>
+                    <li><a href="#">ABOUT</a></li>
+                    <li><a href="#">SERVICE</a></li>
+                    <li><a href="#">CONTACT</a></li>
+                </ul>
+            </div>
+            <div class= "search">
+                <input class= "srch" type="search" name="" placeholder="Type to search">
+                <a href="#"> <button class= "btn">Search </button> </a>
+            </div>
+           
+        </div>
+        <section class="welcome layout_padding">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-5">
+                  <div class="img-box">
+                    <img src="cartoon-transformed.png" alt="">
+                  </div>
+                </div>
+                <div class="col-md-7">
+                  <div class="detail-box">
+                    <div class="heading_container">
+                      <h2>
+                        Welcome to FileConvertify
+                      </h2>
+                    </div>
+                    <p>
+                        Our platform is a versatile tool for seamless file conversion.<br>Whether you need to transform PDF documents into easily <br>editable text files or convert text files into PDF format, our <br> user-friendly interface simplifies the process. Our converter <br> provides swift and efficient conversions, enabling users to <br> effortlessly switch between PDF and text formats with precision. <br> Additionally, it supports various file formats, ensuring compatibility <br> and convenience for all your document needs.
+                    </p>
+                    </div>
+                  </div>
+                </div>
+        
+              </div>
+            </div>
+          </section>
+          <main class="flex-container">
+            <div class="converter-container">
+                <div class="converter-wrapper pdf-converter">
+                    <div class="conversion-category">
+                        <img src="pdf.jpg" alt="PDF Image" class="conversion-image">
+                        <div class="conversion-content">
+                            <h2>PDF to TXT</h2>
+                            <section class="converter">
+                                <input type="file" id="pdfInput" accept=".pdf">
+                                    <br><br>
+                                    <button onclick="convertToTxt()">Convert to TXT</button>
+                                </form>
+                            </section>
+                        </div>
+                    </div>
+                    <script>
+        async function convertToTxt() {
+            var pdfInput = document.getElementById('pdfInput');
+            var file = pdfInput.files[0];
+
+            if (!file) {
+                alert('Please choose a PDF file.');
+                return;
+            }
+
+            var reader = new FileReader();
+
+            reader.onload = async function (e) {
+                var data = new Uint8Array(e.target.result);
+                var loadingTask = pdfjsLib.getDocument(data);
+                
+                loadingTask.promise.then(async function (pdf) {
+                    var text = '';
+
+                    for (var pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+                        var page = await pdf.getPage(pageNum);
+                        var content = await page.getTextContent();
+                        
+                        content.items.forEach(function (item) {
+                            text += item.str + ' ';
+                        });
+
+                        text += '\n';
+                    }
+
+                    downloadTxtFile(text);
+                });
+            };
+
+            reader.readAsArrayBuffer(file);
+        }
+
+        function downloadTxtFile(text) {
+            var blob = new Blob([text], { type: 'text/plain' });
+            var link = document.createElement('a');
+            link.download = 'converted_text.txt';
+            link.href = window.URL.createObjectURL(blob);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+                </div>
+                <div class="converter-wrapper txt-converter">
+                    <div class="conversion-category">
+                        <img src="txt.jpg" alt="TXT Image" class="conversion-image">
+                        <div class="conversion-content">
+                            <h2>TXT to PDF</h2>
+                            <section class="converter">
+                                <form id="txtToPdfForm" action="/convertTextToPdf" method="post" enctype="multipart/form-data">
+                                    <input type="file" name="txtFile" accept=".txt">
+                                    <br><br>
+                                    <button type="submit">Convert</button>
+                                </form>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    <footer>
+        <p>&copy; 2023 PDF Converter</p>
+    </footer>
+    </div>
+</body>
+</html>
