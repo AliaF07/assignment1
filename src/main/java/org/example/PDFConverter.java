@@ -43,7 +43,7 @@ public class PDFConverter {
         }
     }
 
-    public static void textToPDF(String inputFilePath, String outputFilePath) throws IOException {
+    public static void TextToPDF(String inputFilePath, String outputFilePath) throws IOException {
         PDDocument document = new PDDocument();
         FileInputStream inputStream = new FileInputStream(inputFilePath);
 
@@ -62,7 +62,7 @@ public class PDFConverter {
         inputStream.close();
     }
 
-    public static void pdfToText(String inputFilePath, String outputFilePath) throws IOException {
+    public static void PdfToText(String inputFilePath, String outputFilePath) throws IOException {
         PDDocument document = PDDocument.load(new File(inputFilePath));
         PDFTextStripper textStripper = new PDFTextStripper();
         String text = textStripper.getText(document);
