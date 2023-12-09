@@ -1,4 +1,4 @@
-function PdfToText() {
+function pdfToText() {
     var form = document.getElementById("pdfForm");
     var formData = new FormData(form);
 
@@ -14,7 +14,7 @@ function PdfToText() {
     xhr.send(formData);
 }
 
-function TextToPdf() {
+function textToPdf() {
     var form = document.getElementById("txtForm");
     var formData = new FormData(form);
 
