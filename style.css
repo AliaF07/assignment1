@@ -1,12 +1,12 @@
 body {
-    background-color: #f4f7f9; /* Lighter background color */
+    background-color: #f4f7f9; 
     font-family: Arial;
 }
 
 .main {
     width: 100%;
-    background: transparent; /* Reset the background for .main */
-}
+    background: transparent; }
+
 .navbar {
     display: flex;
     align-items: center;
@@ -17,20 +17,20 @@ body {
     display: inline-block;
     margin-right: 20px;
     margin-left: 10px;
-    padding: 4px 8px; /* Adjusted padding */
-    background-color: #3498db; /* Adjusted background color */
+    padding: 4px 8px;
+    background-color: #3498db; 
     color: #fff;
     border-radius: 5px;
 }
 .logo-image {
     display: flex;
     align-items: center;
-    margin-right: 10px; /* Adjust margin as needed */
+    margin-right: 10px; 
 }
 
 .logo-image img {
-    width: 60px; /* Set the width of your logo */
-    height: auto; /* Maintain aspect ratio */
+    width: 60px; 
+    height: auto; 
 }
 .menu ul {
     float: left;
@@ -56,7 +56,7 @@ body {
     width: 330px;
     float: left;
     margin-left: 200px;
-    display: flex; /* Add flex display to the search container */
+    display: flex; 
 }
 
 .srch {
@@ -72,11 +72,11 @@ body {
     padding: 10px;
     border-bottom-left-radius: 5px;
     border-top-left-radius: 5px;
-    flex: 1; /* Use flex property to allow the input to expand */
+    flex: 1; 
 }
 
 .btn {
-    width: 80px; /* Adjust the button width */
+    width: 80px; 
     height: 40px;
     background: blue;
     border: 2px solid blue;
@@ -85,7 +85,7 @@ body {
     font-size: 15px;
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
-    margin-left: -4px; /* Adjust the button's position */
+    margin-left: -4px; 
 }
 
 .btn:focus {
@@ -101,7 +101,7 @@ body {
         align-items: center;
     }
     .detail-box {
-        flex: 1; /* Allow the box to grow as needed */
+        flex: 1; 
         margin-left: 300px;
 
         p {
@@ -135,9 +135,9 @@ body {
     flex-wrap: wrap;
     flex: 1;
     padding: 20px;
-    background-color: #fff; /* White background for content */
+    background-color: #fff; 
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
 }
 
 .content .par {
@@ -159,7 +159,7 @@ body {
 
 .converter-wrapper {
     display: flex;
-    flex: 1 1 45%; /* Increase the width for converter section */
+    flex: 1 1 45%; 
     flex-direction: column;
     margin-top: 60px; /* Increase the top margin */
     margin-left: 50px; /* Increase the left margin */
@@ -171,29 +171,29 @@ body {
 }
 
 .converter {
-    margin-bottom: 30px; /* Increase the spacing between converter sections */
+    margin-bottom: 30px; 
 }
 
 .converter h2 {
     color:  #3498db;
-    font-size: 24px; /* Increase the font size of the category headers */
+    font-size: 24px; 
 }
 
 .conversion-category {
-    margin-bottom: 30px; /* Increase the spacing between categories */
+    margin-bottom: 30px; 
 }
 
 .conversion-category h2 {
-    margin-bottom: 15px; /* Adjust spacing between category label and converter */
-    font-size: 20px; /* Increase the font size of the subheaders */
+    margin-bottom: 15px; 
+    font-size: 20px; 
     color:  #333;
 }
 
 textarea {
-    width: 50%; /* Increase the width of text areas */
-    height: 150px; /* Increase the height of text areas */
-    margin-bottom: 20px; /* Increase the bottom margin of text areas */
-    padding: 12px; /* Increase the padding of text areas */
+    width: 50% ; 
+    height: 150px; 
+    margin-bottom: 20px; 
+    padding: 12px; 
 }
 
 button[type="submit"] {
@@ -225,9 +225,9 @@ footer {
     flex: 1 1 calc(45% - 20px); /* Adjust width for converter sections */
     margin: 20px;
     padding: 20px;
-    background-color: #f9f9f9; /* Light gray background for converters */
+    background-color: #f9f9f9; 
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
     align-items: center;
     margin-top: 60px;
 }
@@ -245,7 +245,7 @@ footer {
     justify-content: center;
     background-color: #f9f9f9; 
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-top: 35px;
 }
 
