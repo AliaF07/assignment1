@@ -1,0 +1,15 @@
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['txtFile'])) {
+    $txtFilePath = $_FILES['txtFile']['tmp_name'];
+    $outputPdfFilePath = 'output.pdf';
+
+    // Call the Java class to convert TXT to PDF
+    $command = 'java -cp src/main/java TxtToPdfConverter ' . escapeshellarg($txtFilePath) . ' ' . escapeshellarg($outputPdfFilePath);
+    exec($command);
+
+    // Display the result or perform further actions
+    echo "<h2>TXT to PDF Conversion completed successfully.</h2>";
+} else {
+    echo "Invalid request";
+}
+?>
