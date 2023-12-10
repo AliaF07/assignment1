@@ -4,6 +4,7 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <title>PDF to Text Converter</title>
     <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
 </head>
 <body>
     <div class="main">
@@ -52,7 +53,7 @@
         
               </div>
             </div>
-          </section>
+         </section>
           <main class="flex-container">
             <div class="converter-container">
                 <div class="converter-wrapper pdf-converter">
@@ -61,11 +62,59 @@
                         <div class="conversion-content">
                             <h2>PDF to TXT</h2>
                             <section class="converter">
-                                <form id="pdfToTextForm" action="/convert-pdf-to-text" method="post" enctype="multipart/form-data">
-                                    <input type="file" name="pdfFile" accept=".pdf">
+                                <input type="file" id="pdfInput" accept=".pdf">
                                     <br><br>
-                                    <button type="submit">Convert</button>
+                                    <button onclick="convertToTxt()">Convert to TXT</button>
                                 </form>
+                            </section>
+                        </div>
+                        <script>
+        async function convertToTxt() {
+            var pdfInput = document.getElementById('pdfInput');
+            var file = pdfInput.files[0];
+
+            if (!file) {
+                alert('Please choose a PDF file.');
+                return;
+            }
+
+            var reader = new FileReader();
+
+            reader.onload = async function (e) {
+                var data = new Uint8Array(e.target.result);
+                var loadingTask = pdfjsLib.getDocument(data);
+                
+                loadingTask.promise.then(async function (pdf) {
+                    var text = '';
+
+                    for (var pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+                        var page = await pdf.getPage(pageNum);
+                        var content = await page.getTextContent();
+                        
+                        content.items.forEach(function (item) {
+                            text += item.str + ' ';
+                        });
+
+                        text += '\n';
+                    }
+
+                    downloadTxtFile(text);
+                });
+            };
+
+            reader.readAsArrayBuffer(file);
+        }
+
+        function downloadTxtFile(text) {
+            var blob = new Blob([text], { type: 'text/plain' });
+            var link = document.createElement('a');
+            link.download = 'converted_text.txt';
+            link.href = window.URL.createObjectURL(blob);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
                             </section>
                         </div>
                     </div>
@@ -75,13 +124,11 @@
                         <img src="txt.jpg" alt="TXT Image" class="conversion-image">
                         <div class="conversion-content">
                             <h2>TXT to PDF</h2>
-                            <section class="converter">
-                                <form id="txtToPdfForm" action="/convert-text-to-pdf" method="post" enctype="multipart/form-data">
-                                    <input type="file" name="txtFile" accept=".txt">
-                                    <br><br>
-                                    <button type="submit">Convert</button>
-                                </form>
-                            </section>
+                             <section class="converter">
+                        <input type="file" id="txtFile" name="txtFile" accept=".txt">
+                            <br><br>
+                            <button onclick="convertToPdf()">Convert to PDF</button>
+                        </section>
                         </div>
                     </div>
                 </div>
